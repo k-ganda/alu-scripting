@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-"""Doc"""
+"""Top ten"""
 import requests
 
 
-def number_of_subscribers(subreddit):
-    """Subreddit"""
-    url = "https://www.reddit.com/r/{}/about.json" \
+def top_ten(subreddit):
+    """Top ten"""
+    url = "https://www.reddit.com/r/{}/hot.json?limit=10" \
         .format(subreddit)
 
     res = requests.get(url,
@@ -13,7 +13,8 @@ def number_of_subscribers(subreddit):
                            'User-Agent': 'Mozilla/5.0'})
 
     if res.status_code != 200:
-        return 0
+        print(None)
     else:
         json_response = res.json()
-        return json_response.get('data').get('subscribers')
+        posts = json_response.get('data').get('children')
+        [print(post.get('data').get('title')) for post in posts]
