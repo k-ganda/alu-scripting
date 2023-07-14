@@ -13,7 +13,7 @@ def count_words(subreddit, word_list, after='', hot_list=[]):
         .format(subreddit)
     request = requests.get(url, params={'after': after},
                            allow_redirects=False,
-                           headers={'User-Agent': 'Mozilla/org'})
+                           headers={'User-Agent': 'Mozilla/5.0'})
     if request.status_code == 200:
         data = request.json()
 
